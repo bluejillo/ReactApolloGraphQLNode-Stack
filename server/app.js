@@ -1,5 +1,7 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const schema = require('./schema/schema');
 const mongoose = require('mongoose');
 //comment out if you're not using mlab. Create your own mlab db and add this file with your credentials --
@@ -22,6 +24,9 @@ mongoose.connection.once('open', () => {
 // }));
 // --
 
+//need this so apollo can make api calls
+app.use(cors());
+
 //use this if you're using mlab, otherwise comment out --
 app.use('/graphql', graphqlHTTP({
 	schema: mlabSchema,
@@ -29,7 +34,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 //create a few books in your mongoDB and then hit this url: http://localhost:4200/graphql2?query={books{name%20genre}}
-app.use('/graphql2', graphqlHTTP({
+app.use('/graphql2', bodyParser.json(), graphqlHTTP({
 	schema: mlabSchema
 }));
 // --
