@@ -1,5 +1,6 @@
 <template>
-	<div class="booklist">
+	<div>
+		<h4 v-if="loading">Loading ...</h4>
 		<book-item 
 		v-for="book in books"
 		:key="book.id"
@@ -15,7 +16,17 @@
 		name: 'BookList',
 		data () {
 			return {
-				books: []
+				books: [
+					// {
+					// 	name: 'book1',
+					// 	id: '1'
+					// },
+					// {
+					// 	name: 'book2',
+					// 	id: '2'
+					// }
+				],
+				loading: 0
 			}
 		},
 		components: {
@@ -23,7 +34,10 @@
 		},
 		apollo: {
 			books: {
-				query: BOOKS_QUERY
+				query: BOOKS_QUERY,
+				update: function(data){
+					return data.viewer.books;
+				}
 			}
 		}
 	}

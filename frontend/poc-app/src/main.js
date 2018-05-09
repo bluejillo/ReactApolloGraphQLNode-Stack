@@ -14,17 +14,21 @@ const httpLink = new HttpLink({
 const apolloClient = new ApolloClient({
 	link: httpLink,
 	cache: new InMemoryCache(),
+	connectToDevTools: true
 })
 
 Vue.use(VueApollo)
 
 const apolloProvider = new VueApollo({
 	defaultClient: apolloClient,
+	defaultOptions: {
+		$loadingKey: 'loading'
+	}
 }) 
 
 new Vue({
   el:'#app',
   provide: apolloProvider.provide(),
 
-  render: h => h(App),
+  render: h => h(App)
 }).$mount('#app')
