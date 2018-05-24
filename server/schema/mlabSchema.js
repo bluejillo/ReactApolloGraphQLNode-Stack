@@ -10,7 +10,7 @@ const AuthorType = new GraphQLObjectType({
 	//we wrap fields in a function because it will wait until its read the whole file before it executes 
 	//otherwise it will never find BookType or AuthorType
 	fields: () => ({
-		name: {type: GraphQLString},
+		fullName: {type: GraphQLString},
 		age: {type: GraphQLInt},
 		id: {type: GraphQLID},
 		books: {
@@ -27,7 +27,7 @@ const BookType = new GraphQLObjectType({
 	name: 'Book',
 	fields: () => ({
 		id: {type: GraphQLID},
-		name: {type: GraphQLString},
+		bookTitle: {type: GraphQLString},
 		genre: {type: GraphQLString},
 		author: {
 			type: AuthorType,
@@ -81,13 +81,13 @@ const Mutation = new GraphQLObjectType({
 		addAuthor: {
 			type: AuthorType,
 			args: {
-				name: {type: GraphQLString},
+				fullName: {type: GraphQLString},
 				age: {type: GraphQLInt}
 			},
 
 			resolve(parent, args){
 				let author = new Author({
-					name: args.name,
+					fullName: args.fullName,
 					age: args.age
 				});
 
@@ -97,13 +97,13 @@ const Mutation = new GraphQLObjectType({
 		addBook: {
 			type: BookType,
 			args: {
-				name: {type: new GraphQLNonNull(GraphQLString)},
+				bookTitle: {type: new GraphQLNonNull(GraphQLString)},
 				genre: {type: new GraphQLNonNull(GraphQLString)},
 				authorId: {type: new GraphQLNonNull(GraphQLID)}
 			},
 			resolve(parent, args){
 				let book = new Book({
-					name: args.name,
+					bookTitle: args.bookTitle,
 					genre: args.genre,
 					authorId: args.authorId
 				});

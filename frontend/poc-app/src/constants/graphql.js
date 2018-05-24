@@ -4,7 +4,7 @@ export const BOOKS_QUERY = gql `
 	query booksQuery {
 		books{
 			id
-			name
+			bookTitle
 		}
 	}
 `
