@@ -34,10 +34,7 @@
 		},
 		apollo: {
 			books: {
-				query: BOOKS_QUERY,
-				update: function(data){
-					return data.viewer.books;
-				}
+				query: BOOKS_QUERY
 			}
 		}
 	}
