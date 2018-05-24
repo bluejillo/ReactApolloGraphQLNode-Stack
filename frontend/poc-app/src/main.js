@@ -28,7 +28,10 @@ const apolloProvider = new VueApollo({
 
 new Vue({
   el:'#app',
+  router,
   provide: apolloProvider.provide(),
+  template: '<App/>',
+  components: { App }
 
   render: h => h(App)
 })

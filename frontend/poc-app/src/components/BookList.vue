@@ -14,6 +14,9 @@
 
 	export default {
 		name: 'BookList',
+		components: {
+			BookItem
+		},
 		data () {
 			return {
 				books: [
@@ -28,9 +31,6 @@
 				],
 				loading: 0
 			}
-		},
-		components: {
-			BookItem
 		},
 		apollo: {
 			books: {
