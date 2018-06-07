@@ -8,12 +8,14 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 const httpLink = new HttpLink({
-	uri: 'http://localhost:4200/graphql2',
+	uri: 'http://localhost:4200/graphql',
 })
+
+const cache = new InMemoryCache();
 
 const apolloClient = new ApolloClient({
 	link: httpLink,
-	cache: new InMemoryCache(),
+	cache: cache,
 	connectToDevTools: true
 })
 
@@ -29,6 +31,5 @@ const apolloProvider = new VueApollo({
 new Vue({
   el:'#app',
   provide: apolloProvider.provide(),
-
   render: h => h(App)
-}).$mount('#app')
+})

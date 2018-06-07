@@ -1,10 +1,13 @@
 import gql from 'graphql-tag'
 
 export const BOOKS_QUERY = gql `
-	query booksQuery {
+	query allBooksQuery {
 		books{
 			id
-			name
+			bookTitle
 		}
 	}
 `
+
+// export const BOOKS_QUERY = 
+// 	gql`{books}`

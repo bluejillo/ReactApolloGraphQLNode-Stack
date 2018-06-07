@@ -1,21 +1,20 @@
 const graphql = require('graphql');
 const _ = require('lodash');
 
-const {GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList} = graphql;
-
+const {GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull} = graphql;
 const books = [
-	{name: 'book 1', genre: 'fantasy', id:'b1', authorId: '1'},
-	{name: 'book 2', genre: 'self help', id:'b2', authorId: '2'},
-	{name: 'book 3', genre: 'sci-fi', id:'b3', authorId: '3'},
-	{name: 'book 4', genre: 'sci-fi', id:'b4', authorId: '3'},
-	{name: 'book 5', genre: 'sci-fi', id:'b5', authorId: '2'}
+	{bookTitle: 'book 1', genre: 'fantasy', id:'b1', authorId: '1'},
+	{bookTitle: 'book 2', genre: 'self help', id:'b2', authorId: '2'},
+	{bookTitle: 'book 3', genre: 'sci-fi', id:'b3', authorId: '3'},
+	{bookTitle: 'book 4', genre: 'sci-fi', id:'b4', authorId: '3'},
+	{bookTitle: 'book 5', genre: 'sci-fi', id:'b5', authorId: '2'}
 
 ];
 
 const authors = [
-	{name: 'doodly do', age: 33, id:'1'},
-	{name: 'ralph finklesbottom', age: 55, id: '2'},
-	{name: 'rick dastidly', age: 100, id: '3'}
+	{firstName: 'doodly do', age: 33, id:'1'},
+	{firstName: 'ralph finklesbottom', age: 55, id: '2'},
+	{firstName: 'rick dastidly', age: 100, id: '3'}
 ];
 
 const AuthorType = new GraphQLObjectType({
@@ -23,7 +22,7 @@ const AuthorType = new GraphQLObjectType({
 	//we wrap fields in a function because it will wait until its read the whole file before it executes 
 	//otherwise it will never find BookType or AuthorType
 	fields: () => ({
-		name: {type: GraphQLString},
+		firstName: {type: GraphQLString},
 		age: {type: GraphQLInt},
 		id: {type: GraphQLID},
 		books: {
@@ -39,7 +38,7 @@ const BookType = new GraphQLObjectType({
 	name: 'Book',
 	fields: () => ({
 		id: {type: GraphQLID},
-		name: {type: GraphQLString},
+		bookTitle: {type: GraphQLString},
 		genre: {type: GraphQLString},
 		author: {
 			type: AuthorType,
@@ -85,3 +84,4 @@ const RootQuery = new GraphQLObjectType({
 module.exports = new GraphQLSchema({
 	query: RootQuery
 });
+

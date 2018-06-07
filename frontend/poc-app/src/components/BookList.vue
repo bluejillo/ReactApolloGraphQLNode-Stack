@@ -1,10 +1,9 @@
 <template>
 	<div>
 		<h4 v-if="loading">Loading ...</h4>
-		<book-item 
-		v-for="book in books"
-		:key="book.id"
-		:book="book"></book-item>
+		<book-item v-for="book in books"
+		v-bind:key="book.id"
+		v-bind:book="book"></book-item>
 	</div>
 </template>
 
@@ -14,31 +13,63 @@
 
 	export default {
 		name: 'BookList',
-		data () {
-			return {
-				books: [
-					// {
-					// 	name: 'book1',
-					// 	id: '1'
-					// },
-					// {
-					// 	name: 'book2',
-					// 	id: '2'
-					// }
-				],
-				loading: 0
-			}
-		},
 		components: {
 			BookItem
+		},
+		data () {
+			return {
+				books:[],
+				
+				loading: 0
+			}
 		},
 		apollo: {
 			books: {
 				query: BOOKS_QUERY,
-				update: function(data){
-					return data.viewer.books;
-				}
-			}
-		}
-	}
+				loadingKey: 'loading',
+			},
+		},
+	};
+
+	// export default {
+	// 	name: 'BookList',
+	// 	data:  function (){
+	// 		return {
+	// 			books: [],
+	// 			loading: 0,
+	// 		}
+	// 	},
+	// 	apollo: {
+	// 		books: {
+	// 			query: BOOKS_QUERY,
+	// 			pollInterval: 300,
+	// 			loadingKey: 'loading',
+	// 		}
+	// 	},
+	// 	components: {
+	// 		BookItem
+	// 	}
+	// };
+	// export default {
+	// 	name: 'BookList',
+	// 	data:  function (){
+	// 		return {
+	// 			books: [{bookTitle:'testing'}],
+	// 			loading: 0,
+	// 		}
+	// 	},
+	// 	apollo: {
+	// 		books () {
+	// 			return{
+	// 				query: BOOKS_QUERY,
+	// 				pollInterval: 300,
+	// 				loadingKey: 'loading',
+	// 			}
+	// 		}
+	// 	},
+	// 	components: {
+	// 		BookItem
+	// 	}
+	// };
+
 </script>

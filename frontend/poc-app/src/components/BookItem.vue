@@ -1,5 +1,7 @@
 <template>
-	<div>{{book.name}}</div>
+	<div>
+		{{book.bookTitle}}
+	</div>
 </template>
 
 <script>
