@@ -25,6 +25,7 @@
 		},
 		apollo: {
 			books: {
+<<<<<<< HEAD
 				query: BOOKS_QUERY,
 				loadingKey: 'loading',
 			},
@@ -72,4 +73,10 @@
 	// 	}
 	// };
 
+=======
+				query: BOOKS_QUERY
+			}
+		}
+	}
+>>>>>>> c9abd8d57b8ed05785989a5e24f77be8078f100d
 </script>
