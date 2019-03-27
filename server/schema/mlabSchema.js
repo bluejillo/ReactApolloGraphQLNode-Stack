@@ -10,11 +10,7 @@ const AuthorType = new GraphQLObjectType({
 	//we wrap fields in a function because it will wait until its read the whole file before it executes 
 	//otherwise it will never find BookType or AuthorType
 	fields: () => ({
-<<<<<<< HEAD
 		firstName: {type: GraphQLString},
-=======
-		fullName: {type: GraphQLString},
->>>>>>> c9abd8d57b8ed05785989a5e24f77be8078f100d
 		age: {type: GraphQLInt},
 		id: {type: GraphQLID},
 		books: {
@@ -85,21 +81,14 @@ const Mutation = new GraphQLObjectType({
 		addAuthor: {
 			type: AuthorType,
 			args: {
-<<<<<<< HEAD
 				firstName: {type: GraphQLString},
-=======
-				fullName: {type: GraphQLString},
->>>>>>> c9abd8d57b8ed05785989a5e24f77be8078f100d
 				age: {type: GraphQLInt}
 			},
 
 			resolve(parent, args){
 				let author = new Author({
-<<<<<<< HEAD
 					firstName: args.firstName,
-=======
-					fullName: args.fullName,
->>>>>>> c9abd8d57b8ed05785989a5e24f77be8078f100d
+
 					age: args.age
 				});
 
